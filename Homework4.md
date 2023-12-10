@@ -89,28 +89,21 @@ def average_grade_students(students, course):
     all_grades = []
     for student in students:
         if course in student.grades:
-          all_grades += student.grades[course]
-          
-        else:
-                  return 'No Data'  
+          all_grades += student.grades[course]  
         if all_grades:
             result = sum(all_grades) / len(all_grades)
             return result
-        else:
-            return 0
+        return False
 
 def average_grade_lectors(lectors, course):
-  all_grades = []
-  for lector in lectors:
+    all_grades = []
+    for lector in lectors:
       if course in lector.grades:
-          all_grades += lector.grades[course]
-      else:
-          return 'No Data'  
-  if all_grades:  
-      result = sum(all_grades) / len(all_grades)
-      return result
-  else:
-      return 0
+        all_grades += lector.grades[course]
+      if all_grades:  
+        result = sum(all_grades) / len(all_grades)
+        return result
+      return False
     
 
 
@@ -187,10 +180,10 @@ lecturer_average_context_ad = average_grade_lectors(lectors, 'Контекстн
 lecturer_average_design = average_grade_lectors(lectors, 'Дизайн')
 
 student_average_python = average_grade_students(students, 'Python')
-student_average_python = average_grade_students(students, 'Контекстная реклама')
-student_average_python = average_grade_students(students, 'Дизайн')
+student_average_context_ad = average_grade_students(students, 'Контекстная реклама')
+student_average_design = average_grade_students(students, 'Дизайн')
 
-if lecturer_average_python and student_average_python and lecturer_average_python != 'No Data' and student_average_python != 'No Data':
+if lecturer_average_python and student_average_python and lecturer_average_python != 'False' and student_average_python != 'False':
   if lecturer_average_python > student_average_python:
       print("Средняя оценка преподавателя выше, чем средняя оценка студента")
   else:
@@ -222,4 +215,3 @@ print()
 print(student_2.grades)
 print()
 print(f'Средняя оченка за {student_1.courses_in_progress} = {student_1.av_gr()} балла')
-print()
